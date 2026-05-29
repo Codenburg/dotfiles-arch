@@ -1,15 +1,46 @@
-# dotfiles-arch
+# Dotfiles ⚙️
 
-1. Instalar dependencias:
+Mis dotfiles de Arch Linux gestionados con [GNU Stow](https://www.gnu.org/software/stow/).
 
-```sudo pacman -S stow```
+## Lo que incluye
 
-2. Clonar el repositorio en el HOME:
+| Archivo      | Descripción                            |
+|--------------|----------------------------------------|
+| `.zshrc`     | Zsh — alias, plugins, prompt           |
+| `.gitignore` | Reglas globales de Git                 |
 
-`git clone https://github.com/Codenburg/dotfiles-arch ~/dotfiles`
+## Instalación desde cero
 
-3. Enlazar todo:
+En una máquina nueva con Arch:
 
-`cd ~/dotfiles`
+```bash
+sudo pacman -S git stow
+cd ~
+git clone git@github.com:titanium/dotfiles.git ~/dotfiles
+mv ~/.zshrc ~/.zshrc.system.bak   # si existe
+cd ~/dotfiles
+stow .
+ls -lah ~ | grep "\->"              # verificar symlinks
+```
 
-`stow .`
+## Actualizar
+
+```bash
+cd ~/dotfiles
+git add -A && git commit -m "..." && git push
+```
+
+En la otra máquina:
+
+```bash
+cd ~/dotfiles && git pull && stow .
+```
+
+## Estructura
+
+```
+~/.dotfiles/
+├── .zshrc
+├── .gitignore
+└── README.md
+```
