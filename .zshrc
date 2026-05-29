@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-export PATH="$PATH:/home/titanium/.local/bin"
+export PATH="$PATH:~/.local/bin"
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -104,13 +104,17 @@ source $ZSH/oh-my-zsh.sh
 # - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 #
-alias yall='yay -Sua --noconfirm'                # Actualizar solo paquetes de AUR
-alias cleanup='sudo pacman -Rns $(pacman -Qtdq)' # Eliminar dependencias huérfanas
+alias cleanup='pacman -Qtdq | xargs -r sudo pacman -Rns' #eliminar dependencia huerfanas
 alias pkg-add='sudo pacman -Syu'      		 # Instala paquetes actualizando previamente el sistema.
 alias pkg-rm='sudo pacman -Rns'       		 # Elimina paquete, configuraciones y dependencias huérfanas.
 alias pkg-search='pacman -Ss'         		 # Busca paquetes en los repositorios oficiales.
 alias pkg-local='pacman -Qs'          		 # Busca paquetes ya instalados en el sistema.
 alias pkg-info='pacman -Si'           		 # Muestra información detallada de un paquete.
 alias pkg-clean='sudo pacman -Sc'     		 # Limpia el caché conservando las versiones instaladas.
-alias sys-update='sudo pacman -Syu'    		 # Actualiza por completo todo el sistema.
+alias sys-update='sudo pacman -Syu'    		 # Actualiza por completo todo el sistema.	
 alias npm="pnpm"
+alias yall='yay -Sua'                            # Actualizar solo los paquetes instalados desde AUR
+alias aur-add='yay -S --needed'                  # Instalar un paquete desde AUR (o repos oficiales)
+alias aur-search='yay -Ss'                       # Buscar un paquete en el repositorio de la comunidad AUR
+alias aur-info='yay -Si'                         # Ver los detalles y dependencias de un paquete en AUR
+alias aur-clean='yay -Yc'                        # Limpiar dependencias innecesarias específicas de AUR

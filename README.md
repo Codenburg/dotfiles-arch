@@ -17,7 +17,7 @@ El script se encarga de todo: instalar dependencias, Oh My Zsh, plugins, crear l
 |------------------|--------------|
 | KeePassXC        | repos oficiales |
 | Zed              | AUR (yay)    |
-| Zen Browser      | AUR (yay)    |
+| Sublime Text 4   | AUR (yay)    |
 
 ## Actualizar
 

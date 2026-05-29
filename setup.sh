@@ -64,6 +64,6 @@ fi
 
 echo "=> Instalando aplicaciones (KeePassXC, Zed, Zen Browser)..."
 sudo pacman -S --needed keepassxc --noconfirm
-yay -S --needed zed zen-browser-bin --noconfirm
+yay -S --needed zed sublime-text-4 --noconfirm
 
 echo "=> ¡Instalación completada con éxito! Reinicia la terminal."
