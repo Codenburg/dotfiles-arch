@@ -1,22 +1,11 @@
-# Dotfiles ⚙️
-
-Mis dotfiles de Arch Linux gestionados con [GNU Stow](https://www.gnu.org/software/stow/).
-
-## Lo que incluye
-
-| Archivo      | Descripción                            |
-|--------------|----------------------------------------|
-| `.zshrc`     | Zsh — alias, plugins, prompt           |
-| `.gitignore` | Reglas globales de Git                 |
-
-## Instalación desde cero
+# Instalación desde cero
 
 En una máquina nueva con Arch:
 
 ```bash
 sudo pacman -S git stow
 cd ~
-git clone git@github.com:titanium/dotfiles.git ~/dotfiles
+git clone git@github.com:Codenburg/dotfiles-arch.git ~/dotfiles
 mv ~/.zshrc ~/.zshrc.system.bak   # si existe
 cd ~/dotfiles
 stow .
