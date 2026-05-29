@@ -48,4 +48,22 @@ if [ "$SHELL" != "/usr/bin/zsh" ]; then
     chsh -s "$(command -v zsh)"
 fi
 
+# 6. Instalar AUR helper (yay) y aplicaciones
+if ! command -v yay &> /dev/null; then
+    echo "=> Instalando dependencias de compilación y yay (AUR helper)..."
+    sudo pacman -S --needed base-devel git --noconfirm
+
+    mkdir -p /tmp/yay-build
+    git clone https://aur.archlinux.org/yay.git /tmp/yay-build/yay
+    cd /tmp/yay-build/yay
+    makepkg -si --noconfirm
+    cd "$SCRIPT_DIR"
+else
+    echo "=> yay ya está instalado."
+fi
+
+echo "=> Instalando aplicaciones (KeePassXC, Zed, Zen Browser)..."
+sudo pacman -S --needed keepassxc --noconfirm
+yay -S --needed zed zen-browser-bin --noconfirm
+
 echo "=> ¡Instalación completada con éxito! Reinicia la terminal."
