@@ -62,8 +62,20 @@ else
     echo "=> yay ya está instalado."
 fi
 
-echo "=> Instalando aplicaciones (KeePassXC, Zed, Zen Browser)..."
+echo "=> Instalando aplicaciones (KeePassXC, Zed, LibreWolf)..."
 sudo pacman -S --needed keepassxc --noconfirm
-yay -S --needed sublime-text-4 zen-browser-bin --noconfirm
+yay -S --needed sublime-text-4 librewolf-bin --noconfirm
+
+# 7. Linkear user.js de LibreWolf al perfil (si ya existe)
+LIBREWOLF_PROFILE=$(ls -d "$HOME/.librewolf/"*.default* 2>/dev/null | head -1)
+if [ -n "$LIBREWOLF_PROFILE" ]; then
+    echo "=> Linkeando librewolf/user.js al perfil..."
+    ln -sf "$SCRIPT_DIR/librewolf/user.js" "$LIBREWOLF_PROFILE/user.js"
+    echo "   ✓ user.js linkeado a $LIBREWOLF_PROFILE"
+else
+    echo "=> ⚠️  No se encontró perfil de LibreWolf."
+    echo "   Abrí LibreWolf una vez, cerrálo, y volvé a ejecutar este script"
+    echo "   para linkear librewolf/user.js al perfil."
+fi
 
 echo "=> ¡Instalación completada con éxito! Reinicia la terminal."
