@@ -104,7 +104,7 @@ source $ZSH/oh-my-zsh.sh
 # - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 #
-alias cleanup='pacman -Qtdq | xargs -r sudo pacman -Rns' #eliminar dependencia huerfanas
+alias cleanup='sudo pacman -Rns $(pacman -Qtdq)' #eliminar dependencia huerfanas
 alias pkg-add='sudo pacman -Syu'      		 # Instala paquetes actualizando previamente el sistema.
 alias pkg-rm='sudo pacman -Rns'       		 # Elimina paquete, configuraciones y dependencias huérfanas.
 alias pkg-search='pacman -Ss'         		 # Busca paquetes en los repositorios oficiales.
