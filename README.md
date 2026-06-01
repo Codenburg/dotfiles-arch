@@ -65,6 +65,30 @@ Esto aplica tweaks de rendimiento para máquinas con poca RAM (procesos, descarg
 
 > **Si algo se rompe**: abrí `about:config`, buscá la preferencia, toccá en el lápiz/lapicito y poné el valor de Default. No hace falta reinstalar nada.
 
+## Mantenimiento
+
+### Limpiar dependencias huérfanas sin romper nada
+
+```bash
+alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+```
+
+`pacman -Qtd` lista paquetes que fueron instalados como dependencia y ya no los requiere nada. Pero **esto incluye herramientas que usás directo** (`zip`, `jq`, `nodejs`, etc.) que en su momento fueron traídas por otro paquete.
+
+Para evitar que `cleanup` te las borre, marcalas como explícitas **una sola vez**:
+
+```bash
+sudo pacman -D --asexplicit zip jq nodejs rust inetutils
+```
+
+Después de eso, `cleanup` solo va a mostrar dependencias y librerías reales que no necesita nadie.
+
+### Previsualizar antes de borrar
+
+```bash
+pacman -Qtd
+```
+
 ## Estructura
 
 ```
