@@ -18,6 +18,8 @@ El script se encarga de todo: instalar dependencias, Oh My Zsh, plugins, crear l
 | KeePassXC        | repos oficiales |
 | Sublime Text 4   | AUR (yay)    |
 | LibreWolf        | AUR (yay)    |
+| fnm              | AUR (yay)    |
+| pnpm             | AUR (yay)    |
 
 ## Actualizar
 

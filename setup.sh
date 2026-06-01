@@ -62,11 +62,19 @@ else
     echo "=> yay ya está instalado."
 fi
 
-echo "=> Instalando aplicaciones (KeePassXC, Zed, LibreWolf)..."
+echo "=> Instalando aplicaciones (KeePassXC, Sublime Text, LibreWolf, fnm, pnpm)..."
 sudo pacman -S --needed keepassxc --noconfirm
-yay -S --needed sublime-text-4 librewolf-bin --noconfirm
+yay -S --needed sublime-text-4 librewolf-bin fnm-bin pnpm-bin --noconfirm
 
-# 7. Linkear user.js de LibreWolf al perfil (si ya existe)
+# 7. Instalar Node.js con fnm
+if command -v fnm &> /dev/null; then
+    echo "=> Instalando Node.js 24 con fnm..."
+    fnm install 24
+    fnm default 24
+    echo "   ✓ Node.js $(node --version) instalado"
+fi
+
+# 8. Linkear user.js de LibreWolf al perfil (si ya existe)
 LIBREWOLF_PROFILE=$(ls -d "$HOME/.librewolf/"*.default* 2>/dev/null | head -1)
 if [ -n "$LIBREWOLF_PROFILE" ]; then
     echo "=> Linkeando librewolf/user.js al perfil..."
