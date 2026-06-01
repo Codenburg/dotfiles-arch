@@ -1,0 +1,47 @@
+ly — TUI Display Manager
+=========================
+
+Instalación y configuración en Arch Linux.
+
+1. Instalar ly y dependencias
+
+   sudo pacman -S ly xorg-xauth
+
+2. Habilitar ly y deshabilitar getty
+
+   sudo systemctl enable ly@tty1.service
+   sudo systemctl disable getty@tty1.service
+
+3. Si había otro display manager (SDDM, GDM, etc.), deshabilitarlo
+
+   sudo systemctl disable sddm
+   sudo systemctl stop sddm
+
+4. Iniciar ly
+
+   sudo systemctl start ly@tty1.service
+
+5. (Opcional) Animación Matrix
+
+   sudo pacman -S cmatrix
+   Editar /etc/ly/config.ini: animation = matrix
+
+6. Para probar sin reiniciar
+
+   sudo systemctl restart ly@tty1.service
+   Ctrl+Alt+F1 para ver ly
+
+Notas:
+- ly corre en tty1 por defecto.
+- El binario se llama ly-dm (no ly).
+- Config: /etc/ly/config.ini
+- Log: /var/log/ly.log
+- Para cambiar a tty1: Ctrl+Alt+F1
+- Para volver a la terminal: Ctrl+Alt+F3
+
+Script de reparación rápida (revertir cambios en config.ini):
+
+   #!/bin/bash
+   sudo sed -i 's|^login_cmd = /etc/ly/start-animation.sh|login_cmd = null|' /etc/ly/config.ini
+   sudo sed -i 's|^x_cmd = /usr/bin/X -quiet|x_cmd = /usr/bin/X|' /etc/ly/config.ini
+   sudo systemctl restart ly@tty1.service
