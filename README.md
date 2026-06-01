@@ -19,6 +19,7 @@ El script se encarga de todo: instalar dependencias, Oh My Zsh, plugins, crear l
 | Sublime Text 4   | AUR (yay)    |
 | LibreWolf        | AUR (yay)    |
 | fnm              | AUR (yay)    |
+| LocalSend        | AUR (yay)    |
 | pnpm             | AUR (yay)    |
 
 ## Actualizar

@@ -62,9 +62,9 @@ else
     echo "=> yay ya está instalado."
 fi
 
-echo "=> Instalando aplicaciones (KeePassXC, Sublime Text, LibreWolf, fnm, pnpm)..."
+echo "=> Instalando aplicaciones (KeePassXC, Sublime Text, LibreWolf, fnm, pnpm, LocalSend)..."
 sudo pacman -S --needed keepassxc --noconfirm
-yay -S --needed sublime-text-4 librewolf-bin fnm-bin pnpm-bin --noconfirm
+yay -S --needed sublime-text-4 librewolf-bin fnm-bin pnpm-bin localsend-bin --noconfirm
 
 # 7. Instalar Node.js con fnm
 if command -v fnm &> /dev/null; then
