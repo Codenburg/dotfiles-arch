@@ -1,0 +1,31 @@
+/* ocultá la barra de bookmarks */
+#PersonalToolbar { display: none !important; }
+
+/* ocultá la barra de tabs horizontal */
+#TabsToolbar { display: none !important; }
+
+/* achicar la barra de navegación */
+#nav-bar {
+  min-height: 28px !important;
+  max-height: 28px !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+#nav-bar * {
+  font-size: 12px !important;
+}
+
+#urlbar {
+  min-height: 24px !important;
+}
+
+#urlbar-input-container {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+/* sacar TODO lo que está a la derecha de la URL */
+#page-action-buttons {
+  display: none !important;
+}
