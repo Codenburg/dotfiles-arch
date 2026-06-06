@@ -16,6 +16,7 @@ El script se encarga de todo: instalar dependencias, Oh My Zsh, plugins, crear l
 | App              | Desde        |
 |------------------|--------------|
 | KeePassXC        | repos oficiales |
+| Docker           | repos oficiales |
 | Sublime Text 4   | AUR (yay)    |
 | LibreWolf        | AUR (yay)    |
 | fnm              | AUR (yay)    |
@@ -44,6 +45,19 @@ ln -sf ~/dotfiles/librewolf/user.js ~/.librewolf/*.default*/user.js
 ```
 
 Esto aplica tweaks de rendimiento para máquinas con poca RAM (procesos, descarga de pestañas, caché, precarga desactivada, etc).
+
+### Docker
+
+El script instala Docker y docker-compose, habilita el servicio y te agrega al grupo `docker`.
+**Después de la primera ejecución, cerrá sesión y volvé a entrar** para poder usar `docker` sin sudo.
+
+Verificá que funcione:
+
+```bash
+docker run hello-world
+```
+
+> ⚠️ Si no cerrás sesión, ejecutá `newgrp docker` en la terminal actual para activar el grupo sin reiniciar.
 
 ### Referencia rápida: default → nuevo
 
