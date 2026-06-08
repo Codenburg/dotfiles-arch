@@ -35,13 +35,13 @@ if [ -f "$HOME/.zshrc" ] && [ ! -L "$HOME/.zshrc" ]; then
     mv ~/.zshrc ~/.zshrc.system.bak
 fi
 
-# 4. Stow — enlazar configs
+# 3. Stow — enlazar configs
 echo "=> Enlazando configuraciones con Stow..."
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"
 stow .
 
-# 5. Cambiar shell a Zsh
+# 4. Cambiar shell a Zsh
 if [ "$SHELL" != "/usr/bin/zsh" ] && confirm "¿Cambiar el shell por defecto a Zsh?"; then
     echo "=> Cambiando el shell por defecto a Zsh (ingresa tu contraseña de usuario)..."
     chsh -s "$(command -v zsh)"
@@ -79,10 +79,11 @@ if confirm "¿Instalar Docker?"; then
     DOCKER_SELECTED=true
 fi
 
-# AUR (solo si hay yay)
 if confirm "¿Instalar Zed?"; then
     PACMAN_PKGS+=(zed)
 fi
+
+# AUR (solo si hay yay)
 
 if [ "$HAS_YAY" = true ]; then
     if confirm "¿Instalar LibreWolf?"; then
