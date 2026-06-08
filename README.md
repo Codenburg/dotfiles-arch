@@ -9,20 +9,38 @@ git clone git@github.com:Codenburg/dotfiles-arch.git ~/dotfiles
 ~/dotfiles/setup.sh
 ```
 
-El script se encarga de todo: instalar dependencias, Oh My Zsh, plugins, crear los symlinks con Stow y cambiar el shell a Zsh.
+El script se encarga de todo: instalar paquetes base y herramientas, Oh My Zsh, crear los symlinks con Stow, cambiar el shell a Zsh, y preguntar por apps opcionales.
 
-### Apps que instala
+### Paquetes base (se instalan siempre)
+
+| Paquete          | Desde        |
+|------------------|--------------|
+| fzf              | repos oficiales |
+| zoxide           | repos oficiales |
+| atuin            | repos oficiales |
+| bat              | repos oficiales |
+| fd               | repos oficiales |
+| tmux             | repos oficiales |
+| Zed              | repos oficiales |
+| zsh-autosuggestions | repos oficiales |
+| zsh-autocomplete | repos oficiales |
+| zsh-syntax-highlighting | repos oficiales |
+| carapace         | AUR (yay)    |
+| Powerlevel10k    | AUR (yay)    |
+
+### Apps opcionales (pregunta durante el setup)
 
 | App              | Desde        |
 |------------------|--------------|
 | KeePassXC        | repos oficiales |
 | Docker           | repos oficiales |
-| Zed              | repos oficiales |
 | LibreWolf        | AUR (yay)    |
 | Zen Browser      | AUR (yay)    |
 | fnm              | AUR (yay)    |
-| LocalSend        | AUR (yay)    |
 | pnpm             | AUR (yay)    |
+| LocalSend        | AUR (yay)    |
+
+> El CLI de Zed se instala como `zeditor`. El `setup.sh` crea automáticamente un symlink `zed → zeditor` en `/usr/local/bin/` para que puedas usar `zed` directamente.
 
 ## Actualizar
 
@@ -88,7 +106,7 @@ docker run hello-world
 ### Limpiar dependencias huérfanas sin romper nada
 
 ```bash
-alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+cleanup
 ```
 
 `pacman -Qtd` lista paquetes que fueron instalados como dependencia y ya no los requiere nada. Pero **esto incluye herramientas que usás directo** (`zip`, `jq`, `nodejs`, etc.) que en su momento fueron traídas por otro paquete.
@@ -107,14 +125,4 @@ Después de eso, `cleanup` solo va a mostrar dependencias y librerías reales qu
 pacman -Qtd
 ```
 
-## Estructura
 
-```
-~/.dotfiles/
-├── setup.sh
-├── librewolf/
-│   └── user.js
-├── .zshrc
-├── .gitignore
-└── README.md
-```

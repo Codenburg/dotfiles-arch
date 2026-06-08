@@ -15,8 +15,11 @@ confirm() {
 
 # ─── Preámbulo obligatorio ─────────────────────────────────────────────────
 
-echo "=> Actualizando el sistema e instalando Zsh y Stow..."
-sudo pacman -Syu --needed zsh stow git --noconfirm
+echo "=> Actualizando el sistema e instalando paquetes base..."
+sudo pacman -Syu --needed zsh stow git \
+  fzf zoxide atuin bat fd tmux \
+  zsh-autosuggestions zsh-autocomplete zsh-syntax-highlighting \
+  --noconfirm
 
 # 1. Oh My Zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
@@ -26,20 +29,7 @@ else
     echo "=> Oh My Zsh ya está instalado."
 fi
 
-# 2. Plugins de Zsh
-ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
-
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
-    echo "=> Instalando zsh-autosuggestions..."
-    git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
-fi
-
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
-    echo "=> Instalando zsh-syntax-highlighting..."
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
-fi
-
-# 3. Respaldar .zshrc por defecto
+# 2. Respaldar .zshrc por defecto
 if [ -f "$HOME/.zshrc" ] && [ ! -L "$HOME/.zshrc" ]; then
     echo "=> Respaldando el .zshrc por defecto del sistema..."
     mv ~/.zshrc ~/.zshrc.system.bak
@@ -116,6 +106,14 @@ if [ "$HAS_YAY" = true ]; then
     if confirm "¿Instalar LocalSend?"; then
         YAY_PKGS+=(localsend-bin)
     fi
+
+    if confirm "¿Instalar carapace (autocompletado avanzado)?"; then
+        YAY_PKGS+=(carapace-bin)
+    fi
+
+    if confirm "¿Instalar Powerlevel10k (tema para Zsh)?"; then
+        YAY_PKGS+=(zsh-theme-powerlevel10k ttf-meslo-nerd-font-powerlevel10k)
+    fi
 else
     echo "=> ⚠️  Saltando apps de AUR (no tenés yay). Ejecutá de nuevo el script si instalás yay después."
 fi
@@ -150,6 +148,12 @@ if [ "${FNM_SELECTED:-false}" = true ] && command -v fnm &> /dev/null; then
         fnm default 24
         echo "   ✓ Node.js $(node --version) instalado"
     fi
+fi
+
+# Symlink de Zed (el paquete de Arch instala el CLI como "zeditor")
+if command -v zeditor &> /dev/null && [ ! -L "/usr/local/bin/zed" ] && [ ! -f "/usr/local/bin/zed" ]; then
+    echo "=> Creando symlink zed -> zeditor..."
+    sudo ln -s /usr/bin/zeditor /usr/local/bin/zed
 fi
 
 # user.js de LibreWolf

@@ -1,120 +1,80 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-export PATH="$PATH:~/.local/bin"
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-# Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# ─── PATH ───────────────────────────────────────────────────────────────────
+export PATH="$HOME/.local/bin:$HOME/.opencode/bin:$HOME/.cargo/bin:/usr/local/bin:/usr/bin:$PATH"
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# ─── Editor ──────────────────────────────────────────────────────────────────
+export EDITOR="zed"
+export VISUAL="zed"
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# ─── ls colors ───────────────────────────────────────────────────────────────
+export LS_COLORS="di=38;5;67:ow=48;5;60:ex=38;5;132:ln=38;5;144:*.tar=38;5;180:*.zip=38;5;180:*.jpg=38;5;175:*.png=38;5;175:*.mp3=38;5;175:*.wav=38;5;175:*.txt=38;5;223:*.sh=38;5;132"
+alias ls='ls --color=auto'
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+# ─── Homebrew (presente pero los binarios nativos de Arch tienen prioridad) ──
+if [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+# ─── Zsh plugins — Arch nativo ──────────────────────────────────────────────
+source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
+# ─── Powerlevel10k ──────────────────────────────────────────────────────────
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
+# ─── FZF ─────────────────────────────────────────────────────────────────────
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+# ─── Tmux auto-start ────────────────────────────────────────────────────────
+function start_if_needed() {
+    if [[ $- == *i* ]] && [[ -z "$TMUX" ]] && [[ -t 1 ]]; then
+        exec tmux
+    fi
+}
 
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+# ─── Aliases ─────────────────────────────────────────────────────────────────
+alias fzfbat='fzf --preview="bat --theme=gruvbox-dark --color=always {}"'
+alias fzfzed='zed $(fzf --preview="bat --theme=gruvbox-dark --color=always {}")'
+alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+alias pkg-add='sudo pacman -Syu'
+alias pkg-rm='sudo pacman -Rns'
+alias pkg-search='pacman -Ss'
+alias pkg-local='pacman -Qs'
+alias pkg-info='pacman -Si'
+alias pkg-clean='sudo pacman -Sc'
+alias sys-update='sudo pacman -Syu'
+alias npm="pnpm"
+alias yall='yay -Sua'
+alias aur-add='yay -S --needed'
+alias aur-search='yay -Ss'
+alias aur-info='yay -Si'
+alias aur-clean='yay -Yc'
 
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-    git
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-)
-
+# ─── Oh My Zsh ───────────────────────────────────────────────────────────────
+plugins=(command-not-found)
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# ─── Carapace ────────────────────────────────────────────────────────────────
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense'
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# ─── FZF, Zoxide, Atuin ──────────────────────────────────────────────────────
+eval "$(fzf --zsh)"
+eval "$(zoxide init zsh)"
+eval "$(atuin init zsh)"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+# ─── Powerlevel10k user config ───────────────────────────────────────────────
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch $(uname -m)"
-
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
-#
-alias cleanup='sudo pacman -Rns $(pacman -Qtdq)' #eliminar dependencia huerfanas
-alias pkg-add='sudo pacman -Syu'      		 # Instala paquetes actualizando previamente el sistema.
-alias pkg-rm='sudo pacman -Rns'       		 # Elimina paquete, configuraciones y dependencias huérfanas.
-alias pkg-search='pacman -Ss'         		 # Busca paquetes en los repositorios oficiales.
-alias pkg-local='pacman -Qs'          		 # Busca paquetes ya instalados en el sistema.
-alias pkg-info='pacman -Si'           		 # Muestra información detallada de un paquete.
-alias pkg-clean='sudo pacman -Sc'     		 # Limpia el caché conservando las versiones instaladas.
-alias sys-update='sudo pacman -Syu'    		 # Actualiza por completo todo el sistema.	
-alias npm="pnpm"
-alias yall='yay -Sua'                            # Actualizar solo los paquetes instalados desde AUR
-alias aur-add='yay -S --needed'                  # Instalar un paquete desde AUR (o repos oficiales)
-alias aur-search='yay -Ss'                       # Buscar un paquete en el repositorio de la comunidad AUR
-alias aur-info='yay -Si'                         # Ver los detalles y dependencias de un paquete en AUR
-alias aur-clean='yay -Yc'                        # Limpiar dependencias innecesarias específicas de AUR
+start_if_needed
