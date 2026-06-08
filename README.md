@@ -42,6 +42,10 @@ El script se encarga de todo: instalar paquetes base y herramientas, Oh My Zsh, 
 
 > El CLI de Zed se instala como `zeditor`. El `setup.sh` crea automáticamente un symlink `zed → zeditor` en `/usr/local/bin/` para que puedas usar `zed` directamente.
 
+### Tmux
+
+La config de tmux está en `CodenburgTmux/tmux.conf` con tema Kanagawa, navegación tipo vim, ventana flotante con `Alt+G`, y soporte de plugins via TPM. El `setup.sh` linkea el archivo e instala TPM automáticamente. Los plugins se instalan al abrir tmux con `Ctrl+A + I`.
+
 ## Actualizar
 
 ```bash

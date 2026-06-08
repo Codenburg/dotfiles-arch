@@ -31,6 +31,9 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # ─── Powerlevel10k ──────────────────────────────────────────────────────────
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
+# ─── Proyectos ────────────────────────────────────────────────────────────────
+export PROJECT_DIR="$HOME/Codenburg"
+
 # ─── FZF ─────────────────────────────────────────────────────────────────────
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"

@@ -150,6 +150,25 @@ if [ "${FNM_SELECTED:-false}" = true ] && command -v fnm &> /dev/null; then
     fi
 fi
 
+# Tmux — linkear config + instalar TPM
+TMUX_CONF_TARGET="$HOME/.tmux.conf"
+TMUX_PLUGINS_DIR="$HOME/.tmux/plugins"
+TMUX_CONF_SOURCE="$SCRIPT_DIR/CodenburgTmux/tmux.conf"
+
+if [ -f "$TMUX_CONF_SOURCE" ]; then
+    if [ ! -L "$TMUX_CONF_TARGET" ] || [ "$(readlink "$TMUX_CONF_TARGET")" != "$TMUX_CONF_SOURCE" ]; then
+        echo "=> Linkeando tmux.conf..."
+        ln -sf "$TMUX_CONF_SOURCE" "$TMUX_CONF_TARGET"
+    fi
+
+    # TPM (Tmux Plugin Manager)
+    if [ ! -d "$TMUX_PLUGINS_DIR/tpm" ]; then
+        echo "=> Instalando TPM..."
+        mkdir -p "$TMUX_PLUGINS_DIR"
+        git clone https://github.com/tmux-plugins/tpm "$TMUX_PLUGINS_DIR/tpm"
+    fi
+fi
+
 # Symlink de Zed (el paquete de Arch instala el CLI como "zeditor")
 if command -v zeditor &> /dev/null && [ ! -L "/usr/local/bin/zed" ] && [ ! -f "/usr/local/bin/zed" ]; then
     echo "=> Creando symlink zed -> zeditor..."
