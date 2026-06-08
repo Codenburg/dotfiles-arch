@@ -40,7 +40,9 @@ El script se encarga de todo: instalar paquetes base y herramientas, Oh My Zsh, 
 | pnpm             | AUR (yay)    |
 | LocalSend        | AUR (yay)    |
 
-> El CLI de Zed se instala como `zeditor`. El `setup.sh` crea automáticamente un symlink `zed → zeditor` en `/usr/local/bin/` para que puedas usar `zed` directamente.
+> El CLI de Zed se instala como `zeditor`. El `setup.sh` crea automáticamente un symlink `zed → zeditor` en `/usr/local/bin/` para que puedas usar `zed` directamente. La configuración de Zed (fuentes, tema, etc.) está en `.config/zed/settings.json` y stow la linkea automáticamente.
+
+> `$PROJECT_DIR` está configurado como `~/Codenburg` en el `.zshrc`.
 
 ### Tmux
 
