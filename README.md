@@ -17,8 +17,9 @@ El script se encarga de todo: instalar dependencias, Oh My Zsh, plugins, crear l
 |------------------|--------------|
 | KeePassXC        | repos oficiales |
 | Docker           | repos oficiales |
-| Sublime Text 4   | AUR (yay)    |
+| Zed              | repos oficiales |
 | LibreWolf        | AUR (yay)    |
+| Zen Browser      | AUR (yay)    |
 | fnm              | AUR (yay)    |
 | LocalSend        | AUR (yay)    |
 | pnpm             | AUR (yay)    |

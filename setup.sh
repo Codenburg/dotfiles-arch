@@ -90,14 +90,18 @@ if confirm "¿Instalar Docker?"; then
 fi
 
 # AUR (solo si hay yay)
-if [ "$HAS_YAY" = true ]; then
-    if confirm "¿Instalar Sublime Text 4?"; then
-        YAY_PKGS+=(sublime-text-4)
-    fi
+if confirm "¿Instalar Zed?"; then
+    PACMAN_PKGS+=(zed)
+fi
 
+if [ "$HAS_YAY" = true ]; then
     if confirm "¿Instalar LibreWolf?"; then
         YAY_PKGS+=(librewolf-bin)
         LIBREWOLF_SELECTED=true
+    fi
+
+    if confirm "¿Instalar Zen Browser?"; then
+        YAY_PKGS+=(zen-browser-bin)
     fi
 
     if confirm "¿Instalar fnm (Fast Node Manager)?"; then
