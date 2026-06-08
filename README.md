@@ -44,7 +44,7 @@ El script se encarga de todo: instalar paquetes base y herramientas, Oh My Zsh, 
 
 ### Tmux
 
-La config de tmux está en `CodenburgTmux/tmux.conf` con tema Kanagawa, navegación tipo vim, ventana flotante con `Alt+G`, y soporte de plugins via TPM. El `setup.sh` linkea el archivo e instala TPM automáticamente. Los plugins se instalan al abrir tmux con `Ctrl+A + I`.
+La config de tmux está en `.tmux.conf` (stow lo linkea a `~/.tmux.conf`) con tema Kanagawa, navegación tipo vim, ventana flotante con `Alt+G`, y soporte de plugins via TPM. El `setup.sh` instala TPM automáticamente. Los plugins se instalan al abrir tmux con `Ctrl+A + I`.
 
 ## Actualizar
 
