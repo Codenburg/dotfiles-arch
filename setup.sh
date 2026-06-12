@@ -83,6 +83,14 @@ if confirm "¿Instalar Zed?"; then
     PACMAN_PKGS+=(zed)
 fi
 
+if confirm "¿Instalar Alacritty (terminal)?"; then
+    PACMAN_PKGS+=(alacritty)
+fi
+
+if confirm "¿Instalar OpenCode (AI coding agent)?"; then
+    PACMAN_PKGS+=(opencode)
+fi
+
 # AUR (solo si hay yay)
 
 if [ "$HAS_YAY" = true ]; then
@@ -115,6 +123,7 @@ if [ "$HAS_YAY" = true ]; then
     if confirm "¿Instalar Powerlevel10k (tema para Zsh)?"; then
         YAY_PKGS+=(zsh-theme-powerlevel10k ttf-meslo-nerd-font-powerlevel10k)
     fi
+
 else
     echo "=> ⚠️  Saltando apps de AUR (no tenés yay). Ejecutá de nuevo el script si instalás yay después."
 fi
@@ -162,6 +171,14 @@ fi
 if command -v zeditor &> /dev/null && [ ! -L "/usr/local/bin/zed" ] && [ ! -f "/usr/local/bin/zed" ]; then
     echo "=> Creando symlink zed -> zeditor..."
     sudo ln -s /usr/bin/zeditor /usr/local/bin/zed
+fi
+
+# ─── Gentle-AI (ecosistema AI) ──────────────────────────────────────────────
+
+if command -v opencode &> /dev/null && confirm "¿Instalar Gentle-AI (skills, SDD, memoria persistente para OpenCode)?"; then
+    echo "=> Instalando Gentle-AI..."
+    curl -fsSL https://raw.githubusercontent.com/Gentleman-Programming/gentle-ai/main/scripts/install.sh | bash
+    echo "   ✓ Gentle-AI instalado. Corré 'gentle-ai doctor' para verificar."
 fi
 
 # user.js de LibreWolf
