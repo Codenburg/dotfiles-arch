@@ -26,7 +26,7 @@ El script se encarga de todo: instalar paquetes base y herramientas, Oh My Zsh, 
 | zsh-autocomplete | repos oficiales |
 | zsh-syntax-highlighting | repos oficiales |
 | carapace         | AUR (yay)    |
-| Powerlevel10k    | AUR (yay)    |
+| Powerlevel10k (config versionada) | AUR (yay)    |
 
 ### Apps opcionales (pregunta durante el setup)
 
@@ -34,6 +34,8 @@ El script se encarga de todo: instalar paquetes base y herramientas, Oh My Zsh, 
 |------------------|--------------|
 | KeePassXC        | repos oficiales |
 | Docker           | repos oficiales |
+| Alacritty        | repos oficiales |
+| OpenCode         | repos oficiales |
 | LibreWolf        | AUR (yay)    |
 | Zen Browser      | AUR (yay)    |
 | fnm              | AUR (yay)    |
@@ -74,6 +76,16 @@ rm ~/.p10k.zsh && stow .
 ```
 
 > **Mismatch de font**: si p10k muestra `?` o glifos rotos, es porque la config fue generada para una Nerd Font distinta a la que usa alacritty. Re-corré `p10k configure` para regenerarla con la font actual.
+
+### OpenCode + Gentle-AI
+
+OpenCode es el AI coding agent, instalado desde repos oficiales. Después de instalarlo, podés sumarle el ecosistema **Gentle-AI** (skills, SDD, memoria persistente entre sesiones):
+
+```bash
+gentle-ai doctor
+```
+
+El `setup.sh` te ofrece instalarlo automáticamente al final, vía el script de bootstrap de `Gentleman-Programming/gentle-ai`.
 
 ## Actualizar
 
