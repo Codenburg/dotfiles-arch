@@ -104,7 +104,6 @@ fi
 if [ "$HAS_YAY" = true ]; then
     if confirm "¿Instalar LibreWolf?"; then
         YAY_PKGS+=(librewolf-bin)
-        LIBREWOLF_SELECTED=true
     fi
 
     if confirm "¿Instalar Zen Browser?"; then
@@ -187,20 +186,6 @@ if command -v opencode &> /dev/null && confirm "¿Instalar Gentle-AI (skills, SD
     echo "=> Instalando Gentle-AI..."
     curl -fsSL https://raw.githubusercontent.com/Gentleman-Programming/gentle-ai/main/scripts/install.sh | bash
     echo "   ✓ Gentle-AI instalado. Corré 'gentle-ai doctor' para verificar."
-fi
-
-# user.js de LibreWolf
-if [ "${LIBREWOLF_SELECTED:-false}" = true ]; then
-    LIBREWOLF_PROFILE=$(ls -d "$HOME/.librewolf/"*.default* 2>/dev/null | head -1)
-    if [ -n "$LIBREWOLF_PROFILE" ]; then
-        echo "=> Linkeando librewolf/user.js al perfil..."
-        ln -sf "$SCRIPT_DIR/librewolf/user.js" "$LIBREWOLF_PROFILE/user.js"
-        echo "   ✓ user.js linkeado a $LIBREWOLF_PROFILE"
-    else
-        echo "=> ⚠️  No se encontró perfil de LibreWolf."
-        echo "   Abrí LibreWolf una vez, cerrálo, y volvé a ejecutar este script"
-        echo "   para linkear librewolf/user.js al perfil."
-    fi
 fi
 
 echo "=> ¡Instalación completada con éxito! Reinicia la terminal."
