@@ -35,11 +35,18 @@ if [ -f "$HOME/.zshrc" ] && [ ! -L "$HOME/.zshrc" ]; then
     mv ~/.zshrc ~/.zshrc.system.bak
 fi
 
-# 3b. Respaldar configs de terminal pre-existentes (p10k + alacritty)
-for term_cfg in "$HOME/.p10k.zsh" "$HOME/.config/alacritty/alacritty.toml"; do
-    if [ -f "$term_cfg" ] && [ ! -L "$term_cfg" ]; then
-        echo "=> Respaldando $(basename "$term_cfg") existente a $(basename "$term_cfg").pre-stow.bak..."
-        mv "$term_cfg" "${term_cfg}.pre-stow.bak"
+# 3b. Respaldar configs pre-existentes que pueden chocar con stow
+# Cubre real files en las rutas de stow. Foreign symlinks (creados a mano
+# o por stow viejo) NO se respaldan — hay que borrarlos a mano antes de
+# correr setup.sh, o stow va a fallar con "not owned by stow".
+for stow_cfg in \
+    "$HOME/.p10k.zsh" \
+    "$HOME/.tmux.conf" \
+    "$HOME/.config/alacritty/alacritty.toml" \
+    "$HOME/.config/zed/settings.json"; do
+    if [ -f "$stow_cfg" ] && [ ! -L "$stow_cfg" ]; then
+        echo "=> Respaldando $(basename "$stow_cfg") existente a $(basename "$stow_cfg").pre-stow.bak..."
+        mv "$stow_cfg" "${stow_cfg}.pre-stow.bak"
     fi
 done
 
