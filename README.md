@@ -100,16 +100,6 @@ En la otra máquina:
 cd ~/dotfiles && git pull && stow .
 ```
 
-### LibreWolf
-
-Después de la primera ejecución de `setup.sh`, **abrí LibreWolf una vez y cerrálo** para que se cree el perfil. Luego ejecutá de nuevo el script o linkeá manualmente:
-
-```bash
-ln -sf ~/dotfiles/librewolf/user.js ~/.librewolf/*.default*/user.js
-```
-
-Esto aplica tweaks de rendimiento para máquinas con poca RAM (procesos, descarga de pestañas, caché, precarga desactivada, etc).
-
 ### Docker
 
 El script instala Docker y docker-compose, habilita el servicio y te agrega al grupo `docker`.
