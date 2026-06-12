@@ -21,12 +21,9 @@ El script se encarga de todo: instalar paquetes base y herramientas, Oh My Zsh, 
 | bat              | repos oficiales |
 | fd               | repos oficiales |
 | tmux             | repos oficiales |
-| Zed              | repos oficiales |
 | zsh-autosuggestions | repos oficiales |
 | zsh-autocomplete | repos oficiales |
 | zsh-syntax-highlighting | repos oficiales |
-| carapace         | AUR (yay)    |
-| Powerlevel10k (config versionada) | AUR (yay)    |
 
 ### Apps opcionales (pregunta durante el setup)
 
@@ -36,11 +33,14 @@ El script se encarga de todo: instalar paquetes base y herramientas, Oh My Zsh, 
 | Docker           | repos oficiales |
 | Alacritty        | repos oficiales |
 | OpenCode         | repos oficiales |
+| Zed              | repos oficiales |
 | LibreWolf        | AUR (yay)    |
 | Zen Browser      | AUR (yay)    |
 | fnm              | AUR (yay)    |
+| carapace         | AUR (yay)    |
 | pnpm             | AUR (yay)    |
 | LocalSend        | AUR (yay)    |
+| Powerlevel10k (config versionada) | AUR (yay)    |
 
 > El CLI de Zed se instala como `zeditor`. El `setup.sh` crea automáticamente un symlink `zed → zeditor` en `/usr/local/bin/` para que puedas usar `zed` directamente. La configuración de Zed (fuentes, tema, etc.) está en `.config/zed/settings.json` y stow la linkea automáticamente.
 
@@ -99,6 +99,8 @@ En la otra máquina:
 ```bash
 cd ~/dotfiles && git pull && stow .
 ```
+
+> Si `stow` tira "existing target is not owned by stow" en algún symlink (foreign symlink creado a mano, o el repo fue recreado), respaldá el real file a `*.pre-stow.bak` o borrá el foreign symlink, y reintentá. Ver bloque "3b" en `setup.sh` para los targets cubiertos.
 
 ### Docker
 
