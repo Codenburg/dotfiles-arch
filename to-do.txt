@@ -1,6 +1,0 @@
-agregado al setup.sh:
-- alacritty (pacman)
-- opencode-bin (AUR)
-- gentle-ai (install script de GitHub)
-
-correr setup.sh de nuevo y fue.
