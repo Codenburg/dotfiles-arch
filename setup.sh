@@ -35,6 +35,14 @@ if [ -f "$HOME/.zshrc" ] && [ ! -L "$HOME/.zshrc" ]; then
     mv ~/.zshrc ~/.zshrc.system.bak
 fi
 
+# 3b. Respaldar configs de terminal pre-existentes (p10k + alacritty)
+for term_cfg in "$HOME/.p10k.zsh" "$HOME/.config/alacritty/alacritty.toml"; do
+    if [ -f "$term_cfg" ] && [ ! -L "$term_cfg" ]; then
+        echo "=> Respaldando $(basename "$term_cfg") existente a $(basename "$term_cfg").pre-stow.bak..."
+        mv "$term_cfg" "${term_cfg}.pre-stow.bak"
+    fi
+done
+
 # 3. Stow — enlazar configs
 echo "=> Enlazando configuraciones con Stow..."
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"

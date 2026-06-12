@@ -48,6 +48,33 @@ El script se encarga de todo: instalar paquetes base y herramientas, Oh My Zsh, 
 
 La config de tmux está en `.tmux.conf` (stow lo linkea a `~/.tmux.conf`) con tema Kanagawa, navegación tipo vim, ventana flotante con `Alt+G`, y soporte de plugins via TPM. El `setup.sh` instala TPM automáticamente. Los plugins se instalan al abrir tmux con `Ctrl+A + I`.
 
+### Alacritty
+
+La config de alacritty está en `.config/alacritty/alacritty.toml` y stow la linkea a `~/.config/alacritty/alacritty.toml`. Usa la paleta Kanagawa (que ya tenés en tmux), la fuente `IosevkaTerm NF`, y la ventana arranca en fullscreen con opacidad 0.95 y blur.
+
+> La fuente `IosevkaTerm NF` no la instala el `setup.sh` automáticamente. Si no la tenés, instalala con:
+> ```bash
+> yay -S ttf-iosevka-term-nerd
+> ```
+
+### Powerlevel10k
+
+La config de p10k está en `.p10k.zsh` y stow la linkea a `~/.p10k.zsh`. Es el snapshot generado por `p10k configure` (1777 líneas, ~92 KB).
+
+Si querés re-personalizar el prompt:
+
+```bash
+p10k configure
+```
+
+El wizard sobreescribe `~/.p10k.zsh` (rompe el symlink de stow). Para volver a la versión versionada:
+
+```bash
+rm ~/.p10k.zsh && stow .
+```
+
+> **Mismatch de font**: si p10k muestra `?` o glifos rotos, es porque la config fue generada para una Nerd Font distinta a la que usa alacritty. Re-corré `p10k configure` para regenerarla con la font actual.
+
 ## Actualizar
 
 ```bash
