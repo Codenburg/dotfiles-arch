@@ -4,3 +4,8 @@
 .atl/
 .zsh_history
 to-do.txt
+# Editor swap/backup files
+*.swp
+*.swpx
+*~
+*.tmp
