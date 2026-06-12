@@ -56,7 +56,7 @@ La config de alacritty está en `.config/alacritty/alacritty.toml` y stow la lin
 
 > La fuente `IosevkaTerm NF` no la instala el `setup.sh` automáticamente. Si no la tenés, instalala con:
 > ```bash
-> yay -S ttf-iosevka-term-nerd
+> sudo pacman -S ttf-iosevkaterm-nerd
 > ```
 
 ### Powerlevel10k
