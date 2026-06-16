@@ -9,7 +9,7 @@
 # └──────────────────────────────────────────────────────────────────────────────┘
 
 [font]
-size = 7.4
+size = 12
 
 [font.normal]
 family = "IosevkaTerm NF"
@@ -20,8 +20,8 @@ family = "IosevkaTerm NF"
 # └──────────────────────────────────────────────────────────────────────────────┘
 
 [window]
-startup_mode = "Fullscreen"
-opacity = 0.95
+startup_mode = "Maximized"
+opacity = 0.70
 blur = true
 option_as_alt = "Both"
 
@@ -50,6 +50,124 @@ TERM = "xterm-256color"
 
 [hints]
 enabled = []
+
+
+# ┌──────────────────────────────────────────────────────────────────────────────┐
+# │                              SELECTION                                       │
+# └──────────────────────────────────────────────────────────────────────────────┘
+
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+
+
+# ┌──────────────────────────────────────────────────────────────────────────────┐
+# │                                MOUSE                                         │
+# └──────────────────────────────────────────────────────────────────────────────┘
+
+[mouse]
+hide_when_typing = true
+
+[[mouse.bindings]]
+mouse = "Middle"
+action = "PasteSelection"
+
+
+# ┌──────────────────────────────────────────────────────────────────────────────┐
+# │                                SCROLLING                                     │
+# └──────────────────────────────────────────────────────────────────────────────┘
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+
+# ┌──────────────────────────────────────────────────────────────────────────────┐
+# │                              KEYBINDINGS                                     │
+# └──────────────────────────────────────────────────────────────────────────────┘
+
+[[keyboard.bindings]]
+key = "Paste"
+action = "Paste"
+
+[[keyboard.bindings]]
+key = "Copy"
+action = "Copy"
+
+[[keyboard.bindings]]
+key = "L"
+mods = "Control"
+action = "ClearLogNotice"
+
+[[keyboard.bindings]]
+key = "L"
+mods = "Control"
+mode = "~Vi"
+chars = "\f"
+
+[[keyboard.bindings]]
+key = "PageUp"
+mods = "Shift"
+mode = "~Alt"
+action = "ScrollPageUp"
+
+[[keyboard.bindings]]
+key = "PageDown"
+mods = "Shift"
+mode = "~Alt"
+action = "ScrollPageDown"
+
+[[keyboard.bindings]]
+key = "Home"
+mods = "Shift"
+mode = "~Alt"
+action = "ScrollToTop"
+
+[[keyboard.bindings]]
+key = "End"
+mods = "Shift"
+mode = "~Alt"
+action = "ScrollToBottom"
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Control|Shift"
+action = "Paste"
+
+[[keyboard.bindings]]
+key = "C"
+mods = "Control|Shift"
+action = "Copy"
+
+[[keyboard.bindings]]
+key = "F"
+mods = "Control|Shift"
+action = "SearchForward"
+
+[[keyboard.bindings]]
+key = "B"
+mods = "Control|Shift"
+action = "SearchBackward"
+
+[[keyboard.bindings]]
+key = "C"
+mods = "Control|Shift"
+mode = "Vi"
+action = "ClearSelection"
+
+[[keyboard.bindings]]
+key = "Key0"
+mods = "Control"
+action = "ResetFontSize"
+
+
+# ┌──────────────────────────────────────────────────────────────────────────────┐
+# │                             GENERAL                                          │
+# └──────────────────────────────────────────────────────────────────────────────┘
+
+[general]
+live_config_reload = true
+working_directory = "None"
 
 
 # ┌──────────────────────────────────────────────────────────────────────────────┐

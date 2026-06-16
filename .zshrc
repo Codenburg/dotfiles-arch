@@ -7,6 +7,11 @@ fi
 
 export ZSH="$HOME/.oh-my-zsh"
 
+# ─── History (CachyOS-style) ──────────────────────────────────────────────
+export HISTCONTROL=ignoreboth
+export HISTORY_IGNORE="(\&|[bf]g|c|clear|history|exit|q|pwd|* --help)"
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
 # ─── PATH ───────────────────────────────────────────────────────────────────
 export PATH="$HOME/.local/bin:$HOME/.opencode/bin:$HOME/.cargo/bin:/usr/local/bin:/usr/bin:$PATH"
 
@@ -62,6 +67,20 @@ alias aur-add='yay -S --needed'
 alias aur-search='yay -Ss'
 alias aur-info='yay -Si'
 alias aur-clean='yay -Yc'
+
+# ─── CachyOS-style extras ──────────────────────────────────────────────────
+alias c="clear"
+alias make="make -j\`nproc\`"
+alias ninja="ninja -j\`nproc\`"
+alias n="ninja"
+alias cleanch="sudo pacman -Scc"
+alias fixpacman="sudo rm /var/lib/pacman/db.lck"
+alias jctl="journalctl -p 3 -xb"
+alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
+alias tb="nc termbin.com 9999"
+alias apt="man pacman"
+alias apt-get="man pacman"
+alias please="sudo"
 
 # ─── Oh My Zsh ───────────────────────────────────────────────────────────────
 plugins=(command-not-found)
