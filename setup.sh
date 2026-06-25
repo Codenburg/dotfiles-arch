@@ -56,6 +56,77 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"
 stow .
 
+# ─── Configuración por resolución de pantalla ──────────────────────────
+
+detect_resolution() {
+    local res=""
+
+    # X11
+    if command -v xrandr &>/dev/null; then
+        res=$(xrandr --current 2>/dev/null | grep -oP '\d+x\d+' | head -1)
+    fi
+
+    # Wayland (wlroots-based compositors)
+    if [ -z "$res" ] && command -v wlr-randr &>/dev/null; then
+        res=$(wlr-randr 2>/dev/null | grep -oP '\d+x\d+' | head -1)
+    fi
+
+    # Hyprland
+    if [ -z "$res" ] && command -v hyprctl &>/dev/null; then
+        res=$(hyprctl monitors 2>/dev/null | grep -oP '\d+x\d+' | head -1)
+    fi
+
+    echo "$res"
+}
+
+configure_for_resolution() {
+    local resolution
+    resolution=$(detect_resolution)
+
+    local alacritty_size=7.4
+    local zed_ui=11
+    local zed_buffer=9
+    local profile="netbook"
+
+    if [ -n "$resolution" ]; then
+        local height="${resolution#*x}"
+        if [ "$height" -ge 900 ] 2>/dev/null; then
+            alacritty_size=11
+            zed_ui=15
+            zed_buffer=13
+            profile="1080p"
+        fi
+        echo "=> Resolución detectada: $resolution → perfil $profile"
+    else
+        echo "=> ⚠️  No se pudo detectar la resolución automáticamente."
+        if confirm "¿Estás usando una pantalla 1080p o más grande?"; then
+            alacritty_size=11
+            zed_ui=15
+            zed_buffer=13
+            profile="1080p"
+        fi
+        echo "   → perfil $profile"
+    fi
+
+    # Alacritty — escribir size.toml (stow no lo gestiona)
+    mkdir -p "$HOME/.config/alacritty"
+    cat > "$HOME/.config/alacritty/size.toml" <<- EOF
+[font]
+size = $alacritty_size
+EOF
+    echo "   ✓ Alacritty: font.size → $alacritty_size"
+
+    # Zed — parchear settings.json si existe (post-stow)
+    local zed_settings="$HOME/.config/zed/settings.json"
+    if [ -f "$zed_settings" ]; then
+        sed -i "s/\"ui_font_size\": [0-9]*/\"ui_font_size\": $zed_ui/" "$zed_settings"
+        sed -i "s/\"buffer_font_size\": [0-9]*/\"buffer_font_size\": $zed_buffer/" "$zed_settings"
+        echo "   ✓ Zed: ui_font_size → $zed_ui, buffer_font_size → $zed_buffer"
+    fi
+}
+
+configure_for_resolution
+
 # 4. Cambiar shell a Zsh
 if [ "$SHELL" != "/usr/bin/zsh" ] && confirm "¿Cambiar el shell por defecto a Zsh?"; then
     echo "=> Cambiando el shell por defecto a Zsh (ingresa tu contraseña de usuario)..."

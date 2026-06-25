@@ -5,3 +5,4 @@ ly-install.txt
 ^\.git$
 ^\.gitignore$
 ^README\.md$
+^\.config/alacritty/size\.toml$
