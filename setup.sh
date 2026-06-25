@@ -177,6 +177,11 @@ if confirm "¿Instalar OpenCode (AI coding agent)?"; then
     PACMAN_PKGS+=(opencode)
 fi
 
+if confirm "¿Configurar Intel GPU TearFree? (picom + drivers Intel + anti-tearing para video en X11)"; then
+    PACMAN_PKGS+=(picom mesa vulkan-intel intel-media-driver libva-intel-driver)
+    CONFIGURE_INTEL_TEARFREE=true
+fi
+
 # AUR (solo si hay yay)
 
 if [ "$HAS_YAY" = true ]; then
@@ -256,6 +261,37 @@ fi
 if command -v zeditor &> /dev/null && [ ! -L "/usr/local/bin/zed" ] && [ ! -f "/usr/local/bin/zed" ]; then
     echo "=> Creando symlink zed -> zeditor..."
     sudo ln -s /usr/bin/zeditor /usr/local/bin/zed
+fi
+
+# Intel GPU TearFree — config para X11/modesetting
+if [ "${CONFIGURE_INTEL_TEARFREE:-false}" = true ]; then
+    echo "=> Configurando Intel GPU TearFree para X11..."
+
+    INTEL_CONF="/etc/X11/xorg.conf.d/20-intel.conf"
+    sudo mkdir -p /etc/X11/xorg.conf.d
+
+    if [ ! -f "$INTEL_CONF" ]; then
+        sudo tee "$INTEL_CONF" > /dev/null <<- 'CONF'
+Section "Device"
+    Identifier "Intel Graphics"
+    Driver "modesetting"
+    Option "TearFree" "true"
+EndSection
+CONF
+        echo "   ✓ Creado $INTEL_CONF con Driver modesetting + TearFree"
+    else
+        echo "   ✓ $INTEL_CONF ya existe, no se sobreescribe"
+    fi
+
+    # Si existe xorg.conf con Driver "intel", advertir
+    if grep -q 'Driver\s+"intel"' /etc/X11/xorg.conf 2>/dev/null; then
+        echo "   ⚠️  /etc/X11/xorg.conf usa Driver \"intel\" (no carga en Xorg moderno)."
+        echo "      El config correcto está en $INTEL_CONF con modesetting."
+        echo "      Podés borrar /etc/X11/xorg.conf si querés:"
+        echo "      sudo rm /etc/X11/xorg.conf"
+    fi
+
+    echo "   ✓ TearFree configurado. Reiniciá la sesión de Xorg para aplicar."
 fi
 
 # ─── Gentle-AI (ecosistema AI) ──────────────────────────────────────────────
