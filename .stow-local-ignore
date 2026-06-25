@@ -2,6 +2,7 @@ setup.sh
 add-gentle-ai.sh
 ly-install.txt
 ^\.atl$
+^\.engram$
 ^\.git$
 ^\.gitignore$
 ^README\.md$
