@@ -177,7 +177,13 @@ if confirm "¿Instalar OpenCode (AI coding agent)?"; then
     PACMAN_PKGS+=(opencode)
 fi
 
-if confirm "¿Configurar Intel GPU TearFree? (picom + drivers Intel + anti-tearing para video en X11)"; then
+# Solo preguntar si hay GPU Intel
+HAS_INTEL_GPU=false
+if command -v lspci &>/dev/null && lspci -nn 2>/dev/null | grep -qi '0300.*Intel'; then
+    HAS_INTEL_GPU=true
+fi
+
+if [ "$HAS_INTEL_GPU" = true ] && confirm "¿Configurar Intel GPU TearFree? (picom + drivers Intel + anti-tearing para video en X11)"; then
     PACMAN_PKGS+=(picom mesa vulkan-intel intel-media-driver libva-intel-driver)
     CONFIGURE_INTEL_TEARFREE=true
 fi
