@@ -8,6 +8,14 @@
       "sessions": 12,
       "memories": 38,
       "prompts": 121
+    },
+    {
+      "id": "298a09ff",
+      "created_by": "titanium",
+      "created_at": "2026-06-26T17:41:27Z",
+      "sessions": 0,
+      "memories": 0,
+      "prompts": 2
     }
   ]
 }
