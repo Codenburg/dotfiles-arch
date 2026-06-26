@@ -1,6 +1,7 @@
 setup.sh
 add-gentle-ai.sh
 ly-install.txt
+^fixes$
 ^\.atl$
 ^\.engram$
 ^\.git$
