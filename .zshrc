@@ -97,4 +97,11 @@ eval "$(zoxide init zsh)"
 # ─── Powerlevel10k user config ───────────────────────────────────────────────
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# ─── PATH dedup ──────────────────────────────────────────────────────────────
+typeset -U path
+# Remove entries that are symlinks to /usr/bin (evita falsos duplicados en health checks)
+path=(${path:#/sbin})
+path=(${path:#/bin})
+path=(${path:#/usr/sbin})
+
 start_if_needed
