@@ -188,6 +188,10 @@ if confirm "¿Instalar CopyQ (gestor de portapapeles con historial e imágenes)?
     PACMAN_PKGS+=(copyq)
 fi
 
+if confirm "¿Instalar Obsidian (notas con markdown y knowledge base)?"; then
+    PACMAN_PKGS+=(obsidian)
+fi
+
 if confirm "¿Instalar Rofi (lanzador de apps tipo Flow Launcher con Alt+Space)?"; then
     PACMAN_PKGS+=(rofi)
 fi
