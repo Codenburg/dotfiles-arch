@@ -45,7 +45,8 @@ for stow_cfg in \
     "$HOME/.config/alacritty/alacritty.toml" \
     "$HOME/.config/zed/settings.json" \
     "$HOME/.config/copyq/copyq.conf" \
-    "$HOME/.config/autostart/com.github.hluk.copyq.desktop"; do
+    "$HOME/.config/autostart/com.github.hluk.copyq.desktop" \
+    "$HOME/.config/openbox/rc.xml"; do
     if [ -f "$stow_cfg" ] && [ ! -L "$stow_cfg" ]; then
         echo "=> Respaldando $(basename "$stow_cfg") existente a $(basename "$stow_cfg").pre-stow.bak..."
         mv "$stow_cfg" "${stow_cfg}.pre-stow.bak"
@@ -185,6 +186,10 @@ fi
 
 if confirm "¿Instalar CopyQ (gestor de portapapeles con historial e imágenes)?"; then
     PACMAN_PKGS+=(copyq)
+fi
+
+if confirm "¿Instalar Rofi (lanzador de apps tipo Flow Launcher con Alt+Space)?"; then
+    PACMAN_PKGS+=(rofi)
 fi
 
 # Solo preguntar si hay GPU Intel
