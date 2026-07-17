@@ -17,8 +17,8 @@ confirm() {
 
 echo "=> Actualizando el sistema e instalando paquetes base..."
 sudo pacman -Syu --needed zsh stow git \
-  fzf zoxide atuin bat fd tmux \
-  zsh-autosuggestions zsh-autocomplete zsh-syntax-highlighting \
+  fzf zoxide bat fd tmux \
+  zsh-autosuggestions zsh-syntax-highlighting \
   --noconfirm
 
 # 1. Oh My Zsh

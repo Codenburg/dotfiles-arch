@@ -17,12 +17,10 @@ El script se encarga de todo: instalar paquetes base y herramientas, Oh My Zsh, 
 |------------------|--------------|
 | fzf              | repos oficiales |
 | zoxide           | repos oficiales |
-| atuin            | repos oficiales |
 | bat              | repos oficiales |
 | fd               | repos oficiales |
 | tmux             | repos oficiales |
 | zsh-autosuggestions | repos oficiales |
-| zsh-autocomplete | repos oficiales |
 | zsh-syntax-highlighting | repos oficiales |
 
 ### Apps opcionales (pregunta durante el setup)

@@ -29,7 +29,6 @@ if [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
 fi
 
 # ─── Zsh plugins — Arch nativo ──────────────────────────────────────────────
-source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -94,7 +93,6 @@ source <(carapace _carapace)
 # ─── FZF, Zoxide, Atuin ──────────────────────────────────────────────────────
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
-eval "$(atuin init zsh)"
 
 # ─── Powerlevel10k user config ───────────────────────────────────────────────
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
