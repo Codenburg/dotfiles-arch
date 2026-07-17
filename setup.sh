@@ -175,6 +175,10 @@ if confirm "¿Instalar Alacritty (terminal)?"; then
     PACMAN_PKGS+=(alacritty)
 fi
 
+if confirm "¿Instalar Firefox (navegador web)?"; then
+    PACMAN_PKGS+=(firefox)
+fi
+
 if confirm "¿Instalar OpenCode (AI coding agent)?"; then
     PACMAN_PKGS+=(opencode)
 fi
@@ -197,14 +201,6 @@ fi
 # AUR (solo si hay yay)
 
 if [ "$HAS_YAY" = true ]; then
-    if confirm "¿Instalar LibreWolf?"; then
-        YAY_PKGS+=(librewolf-bin)
-    fi
-
-    if confirm "¿Instalar Zen Browser?"; then
-        YAY_PKGS+=(zen-browser-bin)
-    fi
-
     if confirm "¿Instalar fnm (Fast Node Manager)?"; then
         YAY_PKGS+=(fnm-bin)
         FNM_SELECTED=true

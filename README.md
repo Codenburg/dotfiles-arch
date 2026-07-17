@@ -32,12 +32,11 @@ El script se encarga de todo: instalar paquetes base y herramientas, Oh My Zsh, 
 | Alacritty        | repos oficiales |
 | OpenCode         | repos oficiales |
 | Zed              | repos oficiales |
-| LibreWolf        | AUR (yay)    |
-| Zen Browser      | AUR (yay)    |
 | fnm              | AUR (yay)    |
 | carapace         | AUR (yay)    |
 | pnpm             | AUR (yay)    |
 | LocalSend        | AUR (yay)    |
+| Firefox (navegador web)          | repos oficiales |
 | CopyQ (gestor de portapapeles)   | repos oficiales |
 | Powerlevel10k (config versionada) | AUR (yay)    |
 
