@@ -43,7 +43,9 @@ for stow_cfg in \
     "$HOME/.p10k.zsh" \
     "$HOME/.tmux.conf" \
     "$HOME/.config/alacritty/alacritty.toml" \
-    "$HOME/.config/zed/settings.json"; do
+    "$HOME/.config/zed/settings.json" \
+    "$HOME/.config/copyq/copyq.conf" \
+    "$HOME/.config/autostart/com.github.hluk.copyq.desktop"; do
     if [ -f "$stow_cfg" ] && [ ! -L "$stow_cfg" ]; then
         echo "=> Respaldando $(basename "$stow_cfg") existente a $(basename "$stow_cfg").pre-stow.bak..."
         mv "$stow_cfg" "${stow_cfg}.pre-stow.bak"
@@ -175,6 +177,10 @@ fi
 
 if confirm "¿Instalar OpenCode (AI coding agent)?"; then
     PACMAN_PKGS+=(opencode)
+fi
+
+if confirm "¿Instalar CopyQ (gestor de portapapeles con historial e imágenes)?"; then
+    PACMAN_PKGS+=(copyq)
 fi
 
 # Solo preguntar si hay GPU Intel

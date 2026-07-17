@@ -38,6 +38,7 @@ El script se encarga de todo: instalar paquetes base y herramientas, Oh My Zsh, 
 | carapace         | AUR (yay)    |
 | pnpm             | AUR (yay)    |
 | LocalSend        | AUR (yay)    |
+| CopyQ (gestor de portapapeles)   | repos oficiales |
 | Powerlevel10k (config versionada) | AUR (yay)    |
 
 > El CLI de Zed se instala como `zeditor`. El `setup.sh` crea automáticamente un symlink `zed → zeditor` en `/usr/local/bin/` para que puedas usar `zed` directamente. La configuración de Zed (fuentes, tema, etc.) está en `.config/zed/settings.json` y stow la linkea automáticamente.
@@ -47,6 +48,18 @@ El script se encarga de todo: instalar paquetes base y herramientas, Oh My Zsh, 
 ### Tmux
 
 La config de tmux está en `.tmux.conf` (stow lo linkea a `~/.tmux.conf`) con tema Kanagawa, navegación tipo vim, ventana flotante con `Alt+G`, y soporte de plugins via TPM. El `setup.sh` instala TPM automáticamente. Los plugins se instalan al abrir tmux con `Ctrl+A + I`.
+
+### CopyQ
+
+La configuración de CopyQ está en `.config/copyq/` y stow la linkea a `~/.config/copyq/`. Incluye:
+
+- **Historial** con soporte de imágenes, texto, y búsqueda
+- **Atajo global** `Super+V` para mostrar/ocultar la ventana
+- **Autostart** con LXQT via `~/.config/autostart/com.github.hluk.copyq.desktop`
+- Tema oscuro, notificaciones, vista previa de imágenes (max 320x240)
+- Comandos personalizados: cifrar/descifrar, fijar items, etiquetas
+
+Para cambiar el atajo global, abrí CopyQ → `Ctrl+P` → pestaña *Atajos* o editá `~/.config/copyq/copyq-commands.ini`.
 
 ### Alacritty
 
