@@ -46,7 +46,8 @@ for stow_cfg in \
     "$HOME/.config/zed/settings.json" \
     "$HOME/.config/copyq/copyq.conf" \
     "$HOME/.config/autostart/com.github.hluk.copyq.desktop" \
-    "$HOME/.config/openbox/rc.xml"; do
+    "$HOME/.config/openbox/rc.xml" \
+    "$HOME/.config/rofi/config.rasi"; do
     if [ -f "$stow_cfg" ] && [ ! -L "$stow_cfg" ]; then
         echo "=> Respaldando $(basename "$stow_cfg") existente a $(basename "$stow_cfg").pre-stow.bak..."
         mv "$stow_cfg" "${stow_cfg}.pre-stow.bak"
