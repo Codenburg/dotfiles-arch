@@ -194,7 +194,7 @@ if confirm "¿Instalar Obsidian (notas con markdown y knowledge base)?"; then
 fi
 
 if confirm "¿Instalar Rofi (lanzador de apps tipo Flow Launcher con Alt+Space)?"; then
-    PACMAN_PKGS+=(rofi)
+    PACMAN_PKGS+=(rofi rofi-emoji)
 fi
 
 # Solo preguntar si hay GPU Intel
